@@ -1,13 +1,15 @@
 import json
 import time
 import myql
+import os
 import requests
 from yahoo_oauth import OAuth1
 
 currentTime = time.time()
 formattedTime = time.strftime("%Z - %Y/%m/%d, %H:%M:%S", time.localtime(currentTime))
-league_id = "nfl.l.646949"
-
+# league_id = "nfl.l.646949"
+league_id = os.environ.get('LEAGUEID')
+print league_id
 # TODO: this needs to be updated with your actual webhook
 #slackUrl = 'put-your-slack-webhook-url-here'
 
@@ -39,8 +41,8 @@ for transaction in transactions[:10]:
 				if players['transaction_data']['type'] == "add":
 					print players['transaction_data']['type']
 					print "Player: {}".format(players['name']['full'])
-					print "From: {}".format(players['transaction_data']['destination_team_name'])
-					print "To: {}".format(players['transaction_data']['source_type'])
+					print "From: {}".format(players['transaction_data']['source_type'])
+					print "To: {}".format(players['transaction_data']['destination_team_name'])
 				else:
 					print players['transaction_data']['type']
 					print "Player: {}".format(players['name']['full'])
