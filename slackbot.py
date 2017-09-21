@@ -7,8 +7,9 @@ from yahoo_oauth import OAuth1
 
 currentTime = time.time()
 formattedTime = time.strftime("%Z - %Y/%m/%d, %H:%M:%S", time.localtime(currentTime))
-# league_id = "nfl.l.646949"
-league_id = os.environ.get('LEAGUEID')
+league_id = os.environ.get('LEAGUE')
+id = "nfl.l.{}".format(league_id)
+
 print league_id
 # TODO: this needs to be updated with your actual webhook
 #slackUrl = 'put-your-slack-webhook-url-here'
