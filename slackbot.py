@@ -18,11 +18,11 @@ oauth = OAuth1(None, None, from_file="resources/credentials.json")
 if not oauth.token_is_valid():
 	oauth.refresh_access_token()
 yql = myql.MYQL(format='json',oauth=oauth)
-resp = yql.raw_query('select * from fantasysports.leagues.standings where league_key="{}"'.format(league_id))
+resp = yql.raw_query('select * from fantasysports.leagues.standings where league_key="{}"'.format(id))
 json_response = json.loads(resp.content.decode(resp.encoding))
 standings = json_response['query']['results']['league']
 
-resp = yql.raw_query('select * from fantasysports.leagues.transactions where league_key = "{}"'.format(league_id))
+resp = yql.raw_query('select * from fantasysports.leagues.transactions where league_key = "{}"'.format(id))
 json_response = json.loads(resp.content.decode(resp.encoding))
 transactions = json_response['query']['results']['league']['transactions']['transaction']
 
